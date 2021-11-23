@@ -16,10 +16,6 @@ apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPartialPolicy
 metadata: # kpt-merge: config-control/deployment-repo-cloudbuild-write
   name: deployment-repo-cloudbuild-write
-  namespace: config-control # kpt-set: ${namespace}
-  annotations:
-    cnrm.cloud.google.com/blueprint: cnrm/gitops/v0.4.0
-    cnrm.cloud.google.com/project-id: project-id # kpt-set: ${project-id}
 spec:
   resourceRef:
     name: deployment-repo # kpt-set: ${deployment-repo}
@@ -35,10 +31,6 @@ apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPartialPolicy
 metadata: # kpt-merge: config-control/source-repo-cloudbuild-read
   name: source-repo-cloudbuild-read
-  namespace: config-control # kpt-set: ${namespace}
-  annotations:
-    cnrm.cloud.google.com/blueprint: cnrm/gitops/v0.4.0
-    cnrm.cloud.google.com/project-id: project-id # kpt-set: ${project-id}
 spec:
   resourceRef:
     name: source-repo # kpt-set: ${source-repo}

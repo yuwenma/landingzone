@@ -17,10 +17,6 @@ apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMServiceAccount
 metadata: # kpt-merge: config-control/sync-cluster-name
   name: sync-cluster-name # kpt-set: sync-${cluster-name}
-  namespace: config-control # kpt-set: ${namespace}
-  annotations:
-    cnrm.cloud.google.com/blueprint: cnrm/gitops/configsync/v0.4.0
-    cnrm.cloud.google.com/project-id: project-id # kpt-set: ${project-id}
 spec:
   displayName: sync-cluster-name # kpt-set: sync-${cluster-name}
 ---
@@ -29,10 +25,6 @@ apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPartialPolicy
 metadata: # kpt-merge: config-control/sync-cluster-name
   name: sync-cluster-name # kpt-set: sync-${cluster-name}
-  namespace: config-control # kpt-set: ${namespace}
-  annotations:
-    cnrm.cloud.google.com/blueprint: cnrm/gitops/configsync/v0.4.0
-    cnrm.cloud.google.com/project-id: project-id # kpt-set: ${project-id}
 spec:
   resourceRef:
     name: sync-cluster-name # kpt-set: sync-${cluster-name}
@@ -49,9 +41,6 @@ kind: IAMPartialPolicy
 metadata: # kpt-merge: config-control/source-reader-sync-cluster-name-project-id
   name: source-reader-sync-cluster-name-project-id # kpt-set: source-reader-sync-${cluster-name}-${project-id}
   namespace: config-control # kpt-set: ${namespace}
-  annotations:
-    cnrm.cloud.google.com/blueprint: cnrm/gitops/configsync/v0.4.0
-    cnrm.cloud.google.com/project-id: project-id # kpt-set: ${project-id}
 spec:
   resourceRef:
     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1

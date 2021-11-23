@@ -1,0 +1,11 @@
+resources:
+- source-repositories.yaml
+- services.yaml
+- hydration-trigger.yaml
+- cloudbuild-iam.yaml
+- configsync/configsync-iam.yaml
+
+namespace: config-control
+commonAnnotations:
+  cnrm.cloud.google.com/blueprint: cnrm/gitops/v0.4.0
+  cnrm.cloud.google.com/project-id: PROJECT_ID

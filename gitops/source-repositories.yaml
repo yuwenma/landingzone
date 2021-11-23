@@ -15,16 +15,8 @@ apiVersion: sourcerepo.cnrm.cloud.google.com/v1beta1
 kind: SourceRepoRepository
 metadata: # kpt-merge: config-control/source-repo
   name: source-repo # kpt-set: ${source-repo}
-  namespace: config-control # kpt-set: ${namespace}
-  annotations:
-    cnrm.cloud.google.com/blueprint: cnrm/gitops/v0.4.0
-    cnrm.cloud.google.com/project-id: project-id # kpt-set: ${project-id}
 ---
 apiVersion: sourcerepo.cnrm.cloud.google.com/v1beta1
 kind: SourceRepoRepository
 metadata: # kpt-merge: config-control/deployment-repo
   name: deployment-repo # kpt-set: ${deployment-repo}
-  namespace: config-control # kpt-set: ${namespace}
-  annotations:
-    cnrm.cloud.google.com/blueprint: cnrm/gitops/v0.4.0
-    cnrm.cloud.google.com/project-id: project-id # kpt-set: ${project-id}
