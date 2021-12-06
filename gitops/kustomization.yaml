@@ -1,0 +1,60 @@
+resources:
+- source-repositories.yaml
+- services.yaml
+- hydration-trigger.yaml
+- cloudbuild-iam.yaml
+- configsync/configsync-iam.yaml
+- setters.yaml
+
+namespace: config-control
+commonAnnotations:
+  cnrm.cloud.google.com/blueprint: cnrm/gitops/v0.4.0
+  cnrm.cloud.google.com/project-id: PROJECT_ID
+
+replacements:
+- source:
+    kind: ConfigMap
+    name: setters
+    fieldPath: data.deployment-repo
+  targets:
+  - select:
+      kind: IAMPartialPolicy
+      name: deployment-repo-cloudbuild-write
+    fieldPaths:
+    - spec.resourceRef.name
+  - select:
+      kind: CloudBuildTrigger
+      name: source-repo-cicd-trigger 
+    fieldPaths:
+    - spec.substitutions._DEPLOYMENT_REPO
+- source:
+    kind: ConfigMap
+    name: setters
+    fieldPath: data.source-repo
+  targets:
+  - select:
+      kind: IAMPartialPolicy
+      name: source-repo-cloudbuild-read
+    fieldPaths:
+    - spec.resourceRef.name
+  - select:
+      kind: CloudBuildTrigger
+      name: source-repo-cicd-trigger 
+    fieldPaths:
+    - spec.substitutions._SOURCE_REPO
+    - spec.triggerTemplate.repoRef.name
+- source:
+    kind: ConfigMap
+    name: setters
+    fieldPath: data.cluster-name
+  targets:
+  - select:
+      kind: CloudBuildTrigger
+      name: source-repo-cicd-trigger 
+    fieldPaths:
+    - spec.substitutions._ADMIN_CLUSTER_NAME
+  - select:
+      kind: ConfigManagement
+      name: config-management 
+    fieldPaths:
+    - spec.clusterName
